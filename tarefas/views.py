@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def tarefas_home(request):
-    return HttpResponse('Aqui estão suas tarefas')
+    return render(request, 'tarefas/home.html')
 
 def tarefas_add(request):
     return HttpResponse('Adicione aki suas tarefas')
