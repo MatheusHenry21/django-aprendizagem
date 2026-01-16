@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpRequest
+from .forms import TarefaForm
 
 # Create your views here.
-
 def tarefas_home(request):
     info = {
         'nome': "Matheus",
@@ -10,5 +10,14 @@ def tarefas_home(request):
     }
     return render(request, 'tarefas/home.html', info)
 
-def tarefas_add(request):
-    return HttpResponse('Adicione aki suas tarefas!')
+def tarefas_add(request: HttpRequest):
+    if request.method == 'POST':
+        formulario = TarefaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('tarefas:home')
+
+    info = {
+        'form':TarefaForm
+    }
+    return render(request, 'tarefas/adicionar.html', info)
