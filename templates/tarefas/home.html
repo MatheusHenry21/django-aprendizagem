@@ -52,11 +52,12 @@
             <th>Data de criação</th>
         </thead>
         <tbody>
-            {% for tarefas in tarefas %}
-                <td>{{tarefas.nome}}</td>
-                <td>{{tarefas.descricao}}</td>
-                <td>{{tarefas.situacao}}</td>
-                <td>{{tarefas.data_criacao}}</td>
+            {% for tarefa in tarefas %}
+                <td>{{tarefa.nome}}</td>
+                <td>{{tarefa.descricao}}</td>
+                <td>{{tarefa.situacao}}</td>
+                <td>{{tarefa.data_criacao}}</td>
+                <td><a href="{% url 'tarefas:remover'  tarefa.id %}">Remover Tarefa</a></td>
             {% endfor %}
         </tbody>
     </table>
