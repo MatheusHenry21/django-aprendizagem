@@ -4,9 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendizado Django</title>
+    <style>
+        thead {
+            text-indent: 20px;
+        }
+
+        table {
+            display: block;
+            width: 830px;
+            height: 200px;
+            background-color: yellow;
+        }
+
+        tbody {
+            background-color: black;
+            color: white;
+        }
+
+        a {
+            background-color: black;
+            color: white;
+            display: block;
+            width: 125px;
+            text-decoration: none;
+            padding: 10px;
+            margin-top: 30px;
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        th {
+            text-indent: 2px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bem vindo {{nome}} de {{idade}} anos! Aki estão suas tarefas!</h1>
+    <h1>Bem vindo {{nome}}! Aki estão suas tarefas!</h1>
+    <table border="1">
+        <thead>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Situação</th>
+            <th>Data de criação</th>
+        </thead>
+        <tbody>
+            {% for tarefas in tarefas %}
+                <td>{{tarefas.nome}}</td>
+                <td>{{tarefas.descricao}}</td>
+                <td>{{tarefas.situacao}}</td>
+                <td>{{tarefas.data_criacao}}</td>
+            {% endfor %}
+        </tbody>
+    </table>
     <a href="{% url 'tarefas:adicionar' %}">Adicionar tarefas</a>
 </body>
 </html>

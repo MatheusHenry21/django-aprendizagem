@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .forms import TarefaForm
+from .models import TarefaModel
 
 # Create your views here.
 def tarefas_home(request):
     info = {
         'nome': "Matheus",
-        'idade': 20
+        'tarefas': TarefaModel.objects.all()
     }
     return render(request, 'tarefas/home.html', info)
 
