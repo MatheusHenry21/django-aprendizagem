@@ -6,5 +6,6 @@ app_name = 'tarefas'
 urlpatterns = [
     path('', views.tarefas_home, name='home'),
     path('adicionar/', views.tarefas_add, name='adicionar'),
-    path('remover/<int:id>', views.tarefas_del, name='remover')
+    path('remover/<int:id>', views.tarefas_del, name='remover'),
+    path('editar/ <int:id>', views.tarefas_up, name='editar')
 ]

@@ -27,3 +27,6 @@ def tarefas_del(request: HttpRequest, id: int):
     tarefa = get_object_or_404(TarefaModel, id=id)
     tarefa.delete()
     return redirect('tarefas:home')
+
+def tarefas_up(request: HttpRequest, id: int):
+    ...
