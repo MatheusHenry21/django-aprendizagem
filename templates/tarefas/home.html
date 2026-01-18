@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendizado Django</title>
     <style>
-        thead {
-            text-indent: 20px;
+
+        h1 {
+            text-align: center;
+        }
+
+        table.tarefas {
+            margin: 0 auto;
+        }
+        div#centro {
+            text-align: center;
+            display: block;
+            margin-top: 40px;
         }
 
         table {
-            display: block;
-            width: 830px;
-            height: 200px;
+            width: 400px;
+            height: auto;
             background-color: yellow;
         }
 
@@ -25,16 +34,26 @@
             background-color: black;
             color: white;
             display: block;
-            width: 125px;
             text-decoration: none;
-            padding: 10px;
-            margin-top: 30px;
+            margin-top: 0px;
             font-family: sans-serif;
             position: relative;
+
         }
 
         a:hover {
             text-decoration: underline;
+        }
+
+        a#add {
+            position: absolute;
+            right: 200px;
+            padding: 5px;
+        }
+
+        td {
+            padding: 0px 50px 0px 50px;
+            text-align: center;
         }
 
         th {
@@ -43,24 +62,35 @@
     </style>
 </head>
 <body>
+    
     <h1>Bem vindo {{nome}}! Aki estão suas tarefas!</h1>
-    <table border="1">
-        <thead>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Situação</th>
-            <th>Data de criação</th>
-        </thead>
-        <tbody>
-            {% for tarefa in tarefas %}
-                <td>{{tarefa.nome}}</td>
-                <td>{{tarefa.descricao}}</td>
-                <td>{{tarefa.situacao}}</td>
-                <td>{{tarefa.data_criacao}}</td>
-                <td><a href="{% url 'tarefas:remover'  tarefa.id %}">Remover Tarefa</a></td>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'tarefas:adicionar' %}">Adicionar tarefas</a>
+    <div id="centro"></div>
+        <table border="1" class="tarefas">
+            <thead>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Situação</th>
+                <th>Data de criação</th>
+            </thead>
+            <tbody>
+                {% for tarefa in tarefas %}
+                    <tr>
+                        <td>{{ tarefa.nome }}</td>
+                        <td>{{ tarefa.descricao }}</td>
+                        <td>{{ tarefa.situacao }}</td>
+                        <td>{{ tarefa.data_criacao }}</td>
+                        <td>
+                            <a href="{% url 'tarefas:remover' tarefa.id %}">Remover</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'tarefas:editar' tarefa.id %}">Atualizar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br/>
+        <a href="{% url 'tarefas:adicionar' %}" id="add">Adicionar tarefas</a>
+    </div>
 </body>
 </html>
